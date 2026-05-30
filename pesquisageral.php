@@ -1,39 +1,63 @@
 <html>
-<title> Semana 01 - Exemplo 04 </title>
+<title> Lista Geral Alunos </title>
+
 <body>
-<center>
-<h3>Exemplo 04 - Listagem Geral de Nomes - Alunos</h3>
-</center>
+    <center>
+     <h3>Lista Geral Alunos</h3>
+    </center>
+
 <?php
 	include_once('conexao.php');
-// ajustando a instruÁ„o select para ordenar por produto
-$query = mysqli_query($conexao,"select * from aluno
- order by nome");
+// ajustando a instrucoes select para ordenar por produto
+    $query = mysqli_query($conexao,"select * FROM aluno order by nome");
+	 
+
+	/*
+    Verifica se a consulta falhou.
+    Se houver erro (tabela inexistente, conex√£o perdida, etc.),
+    exibe mensagem amig√°vel e encerra a execu√ß√£o com die().
+  */
 	if (!$query)
 	{
-		die('Query Inv·lida: ' . @mysqli_error($conexao));  
+		die('Erro ao consultar os alunos. Tente Novamente.');  
 	}
-		echo"<center>";
-	echo "<table border='1px'>";
-	echo "<tr><th width='30px' align='center'>Id</th>
-	<th width='100px'>CÛdigo</th><th width='250px'>Nome</th>
-	<th width='100px'>Valor</th><th width='100px'>Nome</th>
-	<tr>";
-	while($dados=mysqli_fetch_array($query)) 
-	{
+
+	if (mysqli_num_rows($query) == 0) {
+      echo "<center><p>Nenhum aluno cadastrado.</p></center>"
+    } else {
+      echo "<center>";
+	  echo "<table border='1'>";	 
 	
-		echo "<tr>";
-		echo "<td>". $dados['matricula']."</td>";
-		echo "<td>". $dados['nome']."</td>";
-		echo "<td>". $dados['endereco']."</td>";
-		echo "<td>". $dados['cidade']."</td>";
-		echo "<td>". $dados['codcurso']."</td>";		
-		echo "</tr>";
+	echo "<tr>
+		 <th width='80px'>Matricula</th>
+		 <th width='200px'>Nome</th>
+		 <th width='250px'>Endere√ßo</th>
+		 <th width='150px'>Cidade</th>
+		 <th width='100px'>Cod. Curso</th>		
+		</tr>";
 		
-		}
+   while (%dados =  mysqli_fetch_array($query)){
+   echo "<tr>";
+   echo "<td>" . $dados['matricula'] . "</td>" ;
+   echo "<td>" . $dados['nome']      . "</td>" ;
+   echo "<td>" . $dados['endereco']  . "</td>" ;
+   echo "<td>" . $dados['cidade']    . "</td>" ;
+   echo "<td>" . $dados['codcurso']  . "</td>" ;
+   echo "<tr>";
+   }
+
 	echo "</table>";
 	echo "</center>";
+         }
+
 	mysqli_close($conexao);
 ?>
+
+<br>
+<-- Bot√£o para voltar ao menu principal -->
+<center>
+	<input type="button" onclick="window.location='index.php' ;" value="Voltar ao Menu">
+</center>
+
 </body>
 </html>
