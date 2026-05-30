@@ -1,42 +1,23 @@
--- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: 27-Ago-2018 às 22:30
--- Versão do servidor: 5.6.17
--- PHP Version: 5.5.12
-
+-- CONFIGURAÇÕES INICIAIS
+Set Names utf8mb4;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+Set FOREIGN_KEY_CHECKS = 0;
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `escola`
+--- CRIAÇÃO DO BANCO
 --
+Drop DATABASE IF EXISTS escola (
+  
+CREATE DATABASE escola
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `aluno`
---
-
-CREATE TABLE IF NOT EXISTS `aluno` (
-  `matricula` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `endereço` varchar(50) NOT NULL,
-  `cidade` varchar(30) NOT NULL,
-  `codcurso` int(11) NOT NULL,
-  PRIMARY KEY (`matricula`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+USE escola;
 
 --
--- Extraindo dados da tabela `aluno`
+-- Tabela disciplina
 --
 
 INSERT INTO `aluno` (`matricula`, `nome`, `endereço`, `cidade`, `codcurso`) VALUES
