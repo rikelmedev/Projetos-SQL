@@ -25,7 +25,7 @@ if (empty($matricula) || empty($nome)){
        VALUES ('$matricula', '$nome', '$endereco', '$cidade', '$curso')";
 
 //executando instrução SQL
-$resultado = @mysqli_query($conexao, $sqlinsert);
+$resultado = mysqli_query($conexao, $sqlinsert);
 
   if (!$resultado){
    

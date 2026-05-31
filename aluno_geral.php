@@ -11,7 +11,7 @@ $nome = $_POST['inicial'];
 $query = mysqli_query($conexao,"select * from aluno where nome like '%$nome%'   order by nome");
 	if (!$query)
 	{
-		die('Query Inválida: ' . @mysqli_error($conexao));  
+		die('Query Inválida: ' . mysqli_error($conexao));  
 	}
 		echo"<center>";
 	echo "<table border='1px'>";

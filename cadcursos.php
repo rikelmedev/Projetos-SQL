@@ -22,11 +22,11 @@ VALUES ('$codigo', '$nome', '$cod1', '$cod2', '$cod3')";
 
 
 //EXECUÇÃO E VERIFICAÇÃO DO RESULTADO
-$resultado = @mysqli_query($conexao, $sqlinsert);
+$resultado = mysqli_query($conexao, $sqlinsert);
 
 if (!$resultado){
 
-if (@mysqli_error($conexao) == 1062){
+if (mysqli_error($conexao) == 1062){
    echo "<p>Código <strong>$codigo</strong> já esta cadastrado.
    Use um codigo de curso diferente.</p>";
    
