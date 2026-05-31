@@ -1,39 +1,63 @@
 <html>
-<title> Semana 01 - Exemplo 04 </title>
+<title> Pesquisa de Alunos </title>
 <body>
+
 <center>
-<h3>Exemplo 04 - Listagem Geral de Nomes - Alunos</h3>
+<h3>Pesquisa de Alunos</h3>
 </center>
+
 <?php
-	include_once('conexao.php');
-// ajustando a instrução select para ordenar por produto
+  include_once('conexao.php');
+
+// RECUPERAÇÃO DO TERMO DE BUSCA
 $nome = $_POST['inicial'];
 $query = mysqli_query($conexao,"select * from aluno where nome like '%$nome%'   order by nome");
-	if (!$query)
+	
+if (!$query)
 	{
-		die('Query Inválida: ' . mysqli_error($conexao));  
+		die('Erro ao realizar a pesquisa. Tente novamente.');  
 	}
-		echo"<center>";
+
+//VERIFICAÇÃO E EXIBIÇÃO DOS RESULTADOS
+	if(mysqli_num_rows($query) == 0){
+	echo "<center><p>Nenhum aluno encontrado com o nome
+	      <strong>$nome</strong>.</p></center>";
+	
+		  } else {
+	
+    echo"<center>";
 	echo "<table border='1px'>";
-	echo "<tr><th width='30px' align='center'>nome</th>	<th width='100px'>matricula</th>
-	<th width='250px'>endereco</th>
-	<th width='100px'>cidade</th><th width='100px'>codcurso</th>
-	<tr>";
-	while($dados=mysqli_fetch_array($query)) 
-	{
+	echo "<tr>
+	        <th width='200px'>Nome</th>	
+			<th width='100px'>Matricula</th>
+	        <th width='250px'>Endereco</th>
+	        <th width='150px'>Cidade</th>
+	        <th width='100px'>cod.Curso</th>
+	     </tr>";
+
+	while($dados=mysqli_fetch_array($query)) {
 	
 		echo "<tr>";
-		echo "<td>". $dados['nome']."</td>";
-		echo "<td>". $dados['matricula']."</td>";
-		echo "<td>". $dados['endereco']."</td>";
-		echo "<td>". $dados['cidade']."</td>";
-		echo "<td>". $dados['codcurso']."</td>";		
+		echo "<td>". $dados['nome']      ."</td>";
+		echo "<td>". $dados['matricula'] ."</td>";
+		echo "<td>". $dados['endereco']  ."</td>";
+		echo "<td>". $dados['cidade']    ."</td>";
+		echo "<td>". $dados['codcurso']  ."</td>";		
 		echo "</tr>";
-		
 		}
-	echo "</table>";
-	echo "</center>";
-	mysqli_close($conexao);
+
+	    echo "</table>";
+	    echo "</center>";
+        }
+		
+  mysqli_close($conexao);
+
 ?>
+
+<br>
+<center>
+	<input type="button" onclick="window.location='index.php';" value="Voltar ao Menu">
+</center>
+
 </body>
 </html>
