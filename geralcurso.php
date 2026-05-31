@@ -1,29 +1,44 @@
 <html>
-<title> Semana 01 - Exemplo 04 </title>
+     <title> Lista Geral de Cursos </title>
 <body>
+
 <center>
-<h3>Exemplo 04 - Listagem Geral de Nomes - Alunos</h3>
+ <h3>Lista Geral de Cursos</h3>
 </center>
+
+
 <?php
 	include_once('conexao.php');
-// ajustando a instrução select para ordenar por produto
+
+
 $query = mysqli_query($conexao,"select * from curso order by nome");
-	if (!$query)
-	{
-		die('Query Inválida: ' . @mysqli_error($conexao));  
-	}
-		echo"<center>";
-	echo "<table border='1px'>";
-	echo "<tr><th width='30px' align='center'>codcurso</th>	<th width='100px'>nome</th>
-	<th width='250px'>coddisciplina01</th>
-	<th width='100px'>coddisciplina02</th><th width='100px'>coddisciplina03</th>
-	<tr>";
-	while($dados=mysqli_fetch_array($query)) 
-	{
 	
-		echo "<tr>";
-		echo "<td>". $dados['codcurso']."</td>";
-		echo "<td>". $dados['nome']."</td>";
+    if (!$query){
+		die('Erro ao consultar os cursos. Tente novamente.');  
+	            }
+
+// VERIFICAÇÃO E EXIBIÇÃO DOS RESULTADOS
+    if (mysqli_rum_rows($query) == 0) {
+	
+	echo"<center><p>Nenhum curso cadastrado.</p></center>";
+
+	} else {
+
+	echo"<center>";
+	echo "<table border='1px'>";
+	echo "<tr>
+	       <th width='100px'>Cod. Curso</th>	
+	       <th width='200px'>Nome</th>
+	       <th width='120px'>Disciplina01</th>
+	       <th width='120px'>Disciplina02</th>
+		   <th width='120px'>Disciplina03</th>
+	      <tr>";
+
+
+	while($dados=mysqli_fetch_array($query)) {
+	    echo "<tr>";
+		echo "<td>". $dados['codcurso']       ."</td>";
+		echo "<td>". $dados['nome']           ."</td>";
 		echo "<td>". $dados['coddisciplina01']."</td>";
 		echo "<td>". $dados['coddisciplina02']."</td>";
 		echo "<td>". $dados['coddisciplina03']."</td>";		
@@ -32,7 +47,15 @@ $query = mysqli_query($conexao,"select * from curso order by nome");
 		}
 	echo "</table>";
 	echo "</center>";
+}
+
 	mysqli_close($conexao);
 ?>
+
+<br>
+<center>
+	<input type="button" onclick="window.location='index.php';" value="Voltar ao Menus">
+</center>
+
 </body>
 </html>
