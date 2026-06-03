@@ -1,115 +1,114 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Escolar</title>
 
-   <style>
-   .pos{
-    position:absolute;
-    top:10px;
-    left:300px;
-    }
-
-    a{
-     text-decoration:none;
-     color:#fff;
-     }
-</style>
-
-<title>Sistema Escolar</title>
-
+  <link rel="stylesheet" href="estilo.css">
 </head>
+<body>
 
-<body bgcolor="#585858"> -- fundo Cinza
-<table border="1" class="pos">
+  <div class="container">
 
-      <tr >
-	    <td width=800px height="300px" bgcolor="#BDBDBD">
-		<center><img src="cadastro.png" ></center>
-	  </td>
-    </tr>
-   
-	 <-- Título do menu -->
-	<tr>
-	<td bgcolor="#000">
-		<p align=center><font color="#fff">Menu Principal</p>
-	</td>
-   </tr>
+    <!-- Cabeçalho com logo e nome do sistema -->
+    <div class="sys-header">
+      <div class="sys-logo">SE</div>
+      <div>
+        <div class="sys-title">Sistema Escolar</div>
+        <div class="sys-subtitle">Gestão de alunos, cursos e disciplinas</div>
+      </div>
+    </div>
 
-   <-- SEÇÃO: Cadastros -->   
-   <tr>
-	<td bgcolor="#4a4a4a">
-		<p align="center"><font color="#fff">Cadastros</font></p>
-    </td> 
-   <tr>
-	
-   <tr>
-     <td><p align="center"><a href="cadalunos.html">Alunos</a></p></td>
-	</tr>
-	
-	<tr>
-     <td><p align="center"><a href="cadcurso.html">Cursos</a></p></td>
-	</tr>
+    <!-- ── SEÇÃO: Cadastros ──────────────────────────────── -->
+    <div class="card">
+      <div class="card-title">Cadastros</div>
+      <div class="menu-grid">
 
-	<tr>
-     <td><p align="center"><a href="caddisciplina.html">Disciplina</a></p></td>
-	</tr>
+        <a href="cadalunos.html" class="menu-link">
+          <span class="icon">👤</span>
+          <div>
+            <div>Alunos</div>
+            <div class="desc">Cadastrar novo aluno</div>
+          </div>
+        </a>
 
+        <a href="cadcurso.html" class="menu-link">
+          <span class="icon">🎓</span>
+          <div>
+            <div>Cursos</div>
+            <div class="desc">Cadastrar novo curso</div>
+          </div>
+        </a>
 
-	<!-- SEÇÃO: Pesquisar -->
-	<tr>
-	  <td bgcolor="#4a4a4a">
-		<p align="center"><font color="#fff">Pesquisar</font></p>
-	</td>
-   </tr>
+        <a href="caddisciplina.html" class="menu-link">
+          <span class="icon">📚</span>
+          <div>
+            <div>Disciplinas</div>
+            <div class="desc">Cadastrar nova disciplina</div>
+          </div>
+        </a>
 
-   <<tr>
-	  <td>
-		<p align=center>
-			<a href="Pesquisageral.php">Alunos - Lista Geral</a>
-		</p>
-	  </td>
-	</tr>
+      </div>
+    </div>
 
-    <tr>
-	  <td>
-		<p align=center>
-			<a href="consulta_aluno.html">Alunos - Pesquisa por Nome</a>
-		</p>
-	  </td>
-	</tr>
-	
-	<tr>
-	   <td>
-		<p align=center>
-			<a href="geralcurso.php"><font color="cyan">Curso- Lista Geral</a></font>
-		</p>
-	   </td>
-	</tr>
-	
-	<tr>
-	   <td>
-			<p align=center>
-				<a href="consulta_curso.html"><font color="cyan">Cursos- Pesquisa Por Nome</font></a>
-			</p>
-		</td>
-	</tr>
+    <!-- ── SEÇÃO: Pesquisar ──────────────────────────────── -->
+    <div class="card">
+      <div class="card-title">Pesquisar</div>
+      <div class="menu-grid">
 
-	<tr>
-	   <td>
-		    <p align=center>
-			    <a href="geraldisciplina.php"><font color="cyan">Disciplinas- Lista Geral</font></a>
-			</p>
-		</td>
-	</tr>
-	
-	<tr>
-		<td>
-			<p align=center>
-				<a href="consulta_disciplina.html"><font color="cyan">Disciplinas Pesquisa Por Nome</font></a>
-			</p>
-		</td>
-	</tr>
+        <a href="pesquisageral.php" class="menu-link">
+          <span class="icon">👥</span>
+          <div>
+            <div>Alunos — Lista Geral</div>
+            <div class="desc">Ver todos os alunos</div>
+          </div>
+        </a>
 
-</table>
+        <a href="consulta_aluno.html" class="menu-link">
+          <span class="icon">🔍</span>
+          <div>
+            <div>Alunos — Pesquisa</div>
+            <div class="desc">Buscar aluno por nome</div>
+          </div>
+        </a>
+
+        <a href="geralcurso.php" class="menu-link">
+          <span class="icon">📋</span>
+          <div>
+            <div>Cursos — Lista Geral</div>
+            <div class="desc">Ver todos os cursos</div>
+          </div>
+        </a>
+
+        <a href="consulta_curso.html" class="menu-link">
+          <span class="icon">🔍</span>
+          <div>
+            <div>Cursos — Pesquisa</div>
+            <div class="desc">Buscar curso por nome</div>
+          </div>
+        </a>
+
+        <a href="geraldisciplina.php" class="menu-link">
+          <span class="icon">📖</span>
+          <div>
+            <div>Disciplinas — Lista Geral</div>
+            <div class="desc">Ver todas as disciplinas</div>
+          </div>
+        </a>
+
+        <a href="consulta_disciplina.html" class="menu-link">
+          <span class="icon">🔍</span>
+          <div>
+            <div>Disciplinas — Pesquisa</div>
+            <div class="desc">Buscar disciplina por nome</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
 
 </body>
 </html>
