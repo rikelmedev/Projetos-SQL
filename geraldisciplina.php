@@ -1,54 +1,70 @@
 ﻿<html>
-   <title> Listagem Geral de Disciplina </title>
+<head>
+     <title> Listagem Geral de Disciplina </title>
+     <link rel="stylesheet" href="estilo.css">
+</heade>
 <body>
-<center>
-<h3>Listagem Geral de Disciplina</h3>
-</center>
+
+<div class="container">
+ 
+  <div class="sys-header">
+    <div class="sys-logo">SE</div>
+    <div>
+      <div class="sys-title">Sistema Escolar</div>
+      <div class="sys-subtitle">Gestão de alunos, cursos e disciplinas</div>
+    </div>
+  </div>
+ 
+  <div class="card">
 
 <?php
-	include_once('conexao.php');
+include_once('conexao.php');
 
 // AJUSTANDO A INSTRUÇÃO DE CONSULTA SQL
 $query = mysqli_query($conexao,"select * from disciplina order by nome_disciplina");
 	
-if (!$query)
-	{
-		die('	Erro ao consulta disciplinas. Tente Novamente.');  
-	}
-
-	//VERIFICAÇÃO E EXIBIÇÃO DE DADOS
-	if (mysqli_num_rows($query) == 0) {
-	    
-	  echo"<center><p>Nenhuma dicisplina cadastrada.</p></center>";
-
-	} else {	
-
-	  echo"<center>";
-	  echo "<table border='1px'>";
-	  echo "<tr>
-	        <th width='100px'>Código</th>
-			<th width='200px'>Nome Da Disciplina</th>
-			</tr>";
-
-	while($dados=mysqli_fetch_array($query)) {
-		echo "<tr>";
-		echo "<td>". $dados['coddisciplina']   ."</td>";
-		echo "<td>". $dados['nome_disciplina'] ."</td>";
-		echo "</tr>";
-	}
-
-	echo "</table>";
-	echo "</center>";
-
-}	
-
-mysqli_close($conexao);
+if (!$query) die('Erro ao consulta disciplinas. Tente Novamente.');  
+	$total = mysqli_num_rows($query);
 ?>
 
-<br>
-<center>
-	<input type="button" onclick="window.location='index.php';" value="Voltar ao Menu">
-</center>
+<div class="page-header">
+    <h1>Lista Geral de Disciplinas
+        <span class="badge"><?php echo $total; ?> registros</span>
+    </h1>
+    <p>Todas as disciplinas cadastradas, ordenadas por nome.</p>
+    </div>
+	    
+    <?php if ($total == 0): ?>
+      <div class="msg msg-empty">Nenhuma disciplina cadastrada.</div>
+    <?php else: ?>	
 
+	  <table class="result-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nome da Disciplina</th>
+          </tr>
+        </thead>
+  </body>
+
+	<?php while($d = mysqli_fetch_array($query)): ?>
+		<tr>
+		  <td class="col-code"><?php echo $d['coddisciplina']; ?></td>
+		  <td><?php echo $d['nome_disciplina']; ?></td>
+		</tr>
+	<?php endwhile; ?>
+  </tody>
+  </table>
+<?php endif; ?>
+
+<?php mysqli_close($conexao); ?>
+
+<div class="divider"></div>
+ <div class="btn-group">
+	 <a href="index.php" class="btn-ghost">Voltar ao Menu</a>
+  </div>
+</div>
+
+  </div>
 </body>
 </html>
