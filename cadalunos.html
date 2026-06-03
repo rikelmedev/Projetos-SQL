@@ -1,44 +1,74 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<style>
-.pos{
-position:absolute;
-top:10px;
-left:250px;
-}
-</style>
-<title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Alunos — Sistema Escolar</title>
+  <link rel="stylesheet" href="estilo.css">
 </head>
-<body bgcolor="#585858">
-<table border="1" class="pos">
-	<tr>
-		<td> <center><img src="alunos.png" height=300px></center></td >
-	</tr>
-	<tr>
-		<td bgcolor="#000" width=900px><font color="#fff"><p align="center">Cadastro de Alunos</p></font></td>
-<form action="cadalunos.php" method="POST">
-<tr>
-	<td>Matricula:<input type="text" size="15" name="matricula">
-</tr>
-<tr>
-	<td>Nome:<input type="text" size="50" name="nome">
-</tr>
-<tr>
-	<td>Endereço:<input type="text" size="60" name="endereco">
-</tr>	
-<tr>
-	<td>Cidade:<input type="text" size="35" name="cidade">
-</tr>
-<tr>
-	<td>CodCurso:<input type="text" size="04" name="codcurso">
-</tr>
-<br>
-<br>
-<tr>
-<td><input type="submit" value="enviar">
-<a href="../excluir/index.php"><input type="button" value="Limpar"></a></td>
-</tr>
-</form>
-</table>
+<body>
+  <div class="container">
+
+    <div class="sys-header">
+      <div class="sys-logo">SE</div>
+      <div>
+        <div class="sys-title">Sistema Escolar</div>
+        <div class="sys-subtitle">Gestão de alunos, cursos e disciplinas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Cadastro de Alunos</div>
+
+      <form action="cadalunos.php" method="POST">
+
+        //-- Linha com matrícula e código do curso lado a lado --
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Matrícula</label>
+            
+            <input class="form-input" type="text" name="matricula"
+                   placeholder="Ex: 2025001" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Cód. Curso</label>
+            <input class="form-input" type="text" name="codcurso"
+                   placeholder="Ex: 101" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Nome Completo</label>
+          <input class="form-input" type="text" name="nome"
+                 placeholder="Nome do aluno" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Endereço</label>
+          <input class="form-input" type="text" name="endereco"
+                 placeholder="Rua, número, bairro" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Cidade</label>
+          <input class="form-input" type="text" name="cidade"
+                 placeholder="Cidade" required>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="btn-group">
+          //-- Envia os dados para cadalunos.php --
+          <button type="submit" class="btn btn-primary">Cadastrar Aluno</button>
+
+          <button type="button" class="btn btn-ghost"
+                  onclick="this.form.reset();">Limpar</button>
+          <a href="index.php" class="btn btn-ghost">Voltar ao Menu</a>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
 </body>
 </html>
