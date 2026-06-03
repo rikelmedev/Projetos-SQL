@@ -14,52 +14,73 @@
 // EXECUÇÃO DA CONSULTA SQL
 $query = mysqli_query($conexao,"select * from curso where nome like '%$nome%'   order by nome");
 	
-if (!$query)
-	{
-		die('Erro ao realizar a pesquisa. Tente novamente.');
-	}
-
-//VERIFICAÇÃO E EXIBIÇÃO DOS RESULTADOS
-if (mysqli_num_rows($query) == 0) {
-	echo"<center><p>Nenhum curso encontrado com o nome
-	     <strong>$nome</strong>.</p></center>";
-
-	} else {
-
-	echo"<center>";
-	echo "<table border='1'>";
-	echo "<tr>
-	      <th width='200px'>Nome</th>
-	      <th width='100px'>Cod.Curso</th>
-	      <th width='100px'>Disciplina01</th>
-	      <th width='100px'>Disciplina02</th>
-	      <th width='100px'>Disciplina03</th>
-	      <tr>";
-
-
-	while($dados=mysqli_fetch_array($query)) {
-	   echo "<tr>";
-	   echo "<td>". $dados['nome']           ."</td>";
-	   echo "<td>". $dados['codcurso']       ."</td>";
-	   echo "<td>". $dados['coddisciplina01']."</td>";
-	   echo "<td>". $dados['coddisciplina02']."</td>";
-	   echo "<td>". $dados['coddisciplina03']."</td>";		
-	   echo "</tr>";
-	}
-	
-	echo "</table>";
-	echo "</center>";
-
+if (!$query) {
+  die("Erro ao buscar cursos.");
 }
-	
-mysqli_close($conexao);
-
+ 
+$total = mysqli_num_rows($query);
 ?>
-
-<br>
-<center>
-	<input type="button" onclick="window.location='index.php';" value="Voltar ao Menu">
-</center>
-
+ 
+<html>
+<head>
+  <title>Pesquisa de Cursos</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="container">
+ 
+  <div class="sys-header">
+    <div class="sys-logo">SE</div>
+    <div>
+      <div class="sys-title">Sistema Escolar</div>
+      <div class="sys-subtitle">Gestão de alunos, cursos e disciplinas</div>
+    </div>
+  </div>
+ 
+  <div class="card">
+    <div class="page-header">
+      <h1>Pesquisa de Cursos <span class="badge"><?php echo $total; ?> resultado(s)</span></h1>
+      <p>Resultado para: <strong><?php echo $busca; ?></strong></p>
+    </div>
+ 
+    <?php if ($total == 0): ?>
+      <div class="msg msg-empty">
+        Nenhum curso encontrado com o nome <strong><?php echo $busca; ?></strong>.
+      </div>
+    <?php else: ?>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Cód. Curso</th>
+            <th>Nome</th>
+            <th>Disciplina 01</th>
+            <th>Disciplina 02</th>
+            <th>Disciplina 03</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php while ($dados = mysqli_fetch_array($query)): ?>
+          <tr>
+            <td class="col-code"><?php echo $dados['codcurso']; ?></td>
+            <td><?php echo $dados['nome']; ?></td>
+            <td class="col-code"><?php echo $dados['coddisciplina01']; ?></td>
+            <td class="col-code"><?php echo $dados['coddisciplina02']; ?></td>
+            <td class="col-code"><?php echo $dados['coddisciplina03']; ?></td>
+          </tr>
+          <?php endwhile; ?>
+        </tbody>
+      </table>
+    <?php endif; ?>
+ 
+    <?php mysqli_close($conexao); ?>
+ 
+    <div class="divider"></div>
+    <div class="btn-group">
+      <a href="consulta_curso.html" class="btn btn-ghost">Nova Pesquisa</a>
+      <a href="index.php" class="btn btn-ghost">Voltar ao Menu</a>
+    </div>
+  </div>
+ 
+</div>
 </body>
 </html>
