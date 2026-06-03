@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Nunito+Sans:wght@300;400;600&display=swap');
+
+:root {
+  --bg-base:       #0a0e1a;   /* fundo principal — azul quase preto  */
+  --bg-card:       #111827;   /* fundo dos cards e tabelas           */
+  --bg-input:      #1a2235;   /* fundo dos campos de formulário      */
+  --border:        #1e2d45;   /* cor das bordas                      */
+  --accent:        #3b82f6;   /* azul elétrico — cor de destaque     */
+  --accent-hover:  #2563eb;   /* azul mais escuro no hover           */
+  --accent-glow:   rgba(59, 130, 246, 0.15); /* brilho azul suave  */
+  --text-primary:  #f0f4ff;   /* texto principal — quase branco      */
+  --text-secondary:#8899bb;   /* texto secundário — azul acinzentado */
+  --text-muted:    #4a5f80;   /* texto desativado                    */
+  --success:       #10b981;   /* verde para mensagens de sucesso     */
+  --danger:        #ef4444;   /* vermelho para erros                 */
+  --warning:       #f59e0b;   /* amarelo para avisos                 */
+  --radius-sm:     6px;
+  --radius-md:     12px;
+  --radius-lg:     18px;
+  --shadow:        0 4px 24px rgba(0,0,0,0.4);
+  --shadow-accent: 0 0 24px rgba(59,130,246,0.2);
+}
+
+/* ── Reset e base ───────────────────────────────────────────*/
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(59,130,246,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(16,185,129,0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* ── Layout principal ───────────────────────────────────────*/
+.container {
+  width: 100%;
+  max-width: 860px;
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Cabeçalho do sistema ───────────────────────────────────*/
+.sys-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.sys-logo {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: #fff;
+  box-shadow: var(--shadow-accent);
+  flex-shrink: 0;
+}
+
+.sys-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.sys-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+/* ── Cards ──────────────────────────────────────────────────*/
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* ── Links de menu ──────────────────────────────────────────*/
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.menu-link:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-accent);
+}
+
+.menu-link .icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.menu-link .desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+/* ── Formulários ────────────────────────────────────────────*/
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 7px;
+  letter-spacing: 0.03em;
+}
+
+.form-input {
+  width: 100%;
+  padding: 11px 15px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── Botões ─────────────────────────────────────────────────*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: var(--radius-sm);
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* ── Tabelas de resultado ───────────────────────────────────*/
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.result-table th {
+  text-align: left;
+  padding: 11px 16px;
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+.result-table th:last-child  { border-radius: 0 var(--radius-sm) 0 0; }
+
+.result-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.result-table tr:last-child td {
+  border-bottom: none;
+}
+
+.result-table tr:hover td {
+  background: var(--accent-glow);
+}
+
+/* Código/ID na tabela com estilo monospace */
+.result-table .col-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+/* ── Mensagens de feedback ──────────────────────────────────*/
+.msg {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.msg-success {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.3);
+  color: var(--success);
+}
+
+.msg-error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: var(--danger);
+}
+
+.msg-empty {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* ── Cabeçalho de página interna ────────────────────────────*/
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.4px;
+}
+
+.page-header p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ── Badge de contagem ──────────────────────────────────────*/
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: var(--accent-glow);
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+  margin-left: 10px;
+}
+
+/* ── Linha divisora ─────────────────────────────────────────*/
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
